@@ -1,0 +1,11 @@
+# Code Examples <http://csapp.cs.cmu.edu/3e/code.html>
+#
+/code/
+/*.tar
+
+# C
+#
+*.out
+*.o
+*.s
+*.i
