@@ -1,0 +1,41 @@
+#+TITLE: 练习题
+* 1.1
+** A
+
+#+begin_src elisp
+(/ 25.0 (+ 10.0 (/ 1500.0 150.0)))
+#+end_src
+
+#+RESULTS:
+: 1.25
+
+答案是 1.25×
+
+** B
+
+#+begin_src elisp
+;; (/ 25.0 (+ 10.0 (/ 1500.0 SPEED)))
+;; => 1.67
+#+end_src
+
+#+begin_src calc
+1500 / (25 / (5 / 3) - 10)
+#+end_src
+
+#+RESULTS:
+: 300.
+
+答案是 300 km/hr
+
+** 1.2
+
+S = 2, a = 0.8
+
+#+begin_src elisp :var S=2.0 a=0.8
+(/ a (- (/ 1 S) (- 1 a)))
+#+end_src
+
+#+RESULTS:
+: 2.6666666666666665
+
+答案是 2.67×
