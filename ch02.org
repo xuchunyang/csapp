@@ -35,3 +35,60 @@ printf("%d, %d\n", INT_MIN, INT_MAX);
 
 #+RESULTS:
 | -2147483648 | 2147483647 |
+
+* print_bytes
+
+#+begin_src C :results output
+#include <stdio.h>
+
+typedef unsigned char *byte_pointer;
+
+void print_bytes(byte_pointer a, int len)
+{
+    for (int i = 0; i < len; i++)
+        printf(" %.2X", a[i]);
+    printf("\n");
+}
+
+int main()
+{
+    int ival = 12345;
+    float fval = ival;
+    int *pval = &ival;
+    print_bytes((byte_pointer) &ival, sizeof(int));
+    print_bytes((byte_pointer) &fval, sizeof(float));
+    print_bytes((byte_pointer) pval, sizeof(void *));
+}
+#+end_src
+
+#+RESULTS:
+: 39 30 00 00
+: 00 E4 40 46
+: 39 30 00 00 D0 29 E3 E9
+
+* x == y
+
+x^y = 0 等价于 x = y
+
+#+begin_src C
+int equal(int x, int y) 
+{
+    return !(x^y);
+}
+
+
+int main()
+{
+    printf("%x\n", (123^123));
+    printf("%x\n", (123^323));
+
+    printf("%x\n", equal(123, 123));
+    printf("%x\n", equal(123, 456));
+}
+#+end_src
+
+#+RESULTS:
+|   0 |
+| 138 |
+|   1 |
+|   0 |
