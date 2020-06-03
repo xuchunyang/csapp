@@ -1,0 +1,37 @@
+* overflow
+
+#+begin_src C
+printf("int has %d bits\n", sizeof(int) * 8);
+#+end_src
+
+#+RESULTS:
+: int has 32 bits
+
+#+begin_src C
+printf("%d\n", 200 * 300 * 400 * 500);
+#+end_src
+
+#+RESULTS:
+: -884901888
+
+#+begin_src elisp
+(defun chunyang-signed-range (bits)
+  (list (- (expt 2 (1- bits)))
+        (1- (expt 2 (1- bits)))))
+
+(mapcar #'chunyang-signed-range [2 8 16 32 64])
+#+end_src
+
+#+RESULTS:
+|                   -2 |                   1 |
+|                 -128 |                 127 |
+|               -32768 |               32767 |
+|          -2147483648 |          2147483647 |
+| -9223372036854775808 | 9223372036854775807 |
+
+#+begin_src C :includes <limits.h>
+printf("%d, %d\n", INT_MIN, INT_MAX);
+#+end_src
+
+#+RESULTS:
+| -2147483648 | 2147483647 |
