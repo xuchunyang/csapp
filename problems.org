@@ -39,3 +39,45 @@ S = 2, a = 0.8
 : 2.6666666666666665
 
 答案是 2.67×
+
+* 2.12
+
+#+begin_src C
+unsigned x = 0x87654321;
+printf("0x%.8X\n", x & 0xFF);
+printf("0x%.8X\n", (~x & 0xFFFFFF00) | (x & 0xFF));
+printf("0x%.8X\n", (x & 0xFFFFFF00) | 0xFF);
+#+end_src
+
+#+RESULTS:
+| 0x00000021 |
+| 0x789ABC21 |
+| 0x876543FF |
+
+上面只能处理 32 bit，不能处理 8, 16, 64 bit
+
+#+begin_src C
+unsigned x = ~0;
+printf("%X\n", x);
+
+unsigned long y = ~0;
+printf("%lX\n", y);
+#+end_src
+
+#+RESULTS:
+| FFFFFFFF         |
+| FFFFFFFFFFFFFFFF |
+
+#+begin_src C :results output
+unsigned short x = 0x1234;
+printf("unsigned short is %zu bits\n", 8 * sizeof x);
+printf("0x%.4hX\n", x & 0xFF);
+printf("0x%.4hX\n", x ^ ~0xFF);
+printf("0x%.4hX\n", x | 0xFF);
+#+end_src
+
+#+RESULTS:
+: unsigned short is 16 bits
+: 0x0034
+: 0xED34
+: 0x12FF
